@@ -1,0 +1,50 @@
+Multiparadigma:
+Estructurado, Orientado a objetos, Funcional
+
+Estructurado:
+variables,
+tipos de datos,
+estructuras de control,
+funciones
+
+Objetos:
+clase y objeto/instancia
+herencia y polimorfismo
+interfaces
+
+Funcional:
+Funciones lambda
+
+Multiplataforma:
+Windows, Linux, MacOs
+
+tipado dinámico:
+a = 8 (int)
+a = "Hola como estas" (str)
+
+Tipado estático(java):
+int a = 8;
+a = "Hola como estas" <-- ERROR!
+
+Fuertemente tipado:
+a = 2 + "2" <-- ERROR!
+
+Debilmente tipado(javascript):
+let a = 2 + "2"; <-- "22"
+
+Interpretado(Python, javascript, perl, php):
+posee un interprete
+
+Compilado(C/C++, Java, C#):
+para poder ejecutar nuestro codigo debemos compilarlos previamente.
+
+IDE:
+Integrated Development Environment
+
+
+
+
+
+
+
+
