@@ -1,0 +1,7 @@
+Herramientas de trabajo colaborativo:
+https://www.figma.com/
+https://miro.com/
+
+Expresiones regulares:
+https://regexr.com/
+https://www.w3schools.com/python/python_regex.asp
