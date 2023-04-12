@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aula Virtual 2.0</title>
+    
+</head>
+<body>
+    <header>
+        <h1>Aula Virtual 2.0</h1>
+        <p>Bienvenid@ {{user_name}} {{user_lastname}}</p>
+    </header>
+    <nav>
+        <ul>
+            <li><a href="{% url 'index' %}">Home</a></li>
+            <li><a href="{% url 'alta_alumno' %}">Alta Alumno</a></li>
+            <li><a href="{% url 'baja_alumno' %}">Baja Alumno</a></li>
+        </ul>
+    </nav>
+    <main>
+        <section>
+            <h2>Usuario ficticio</h2>
+            <p>Nombre: {{simulated_alumn.first_name}}</p>
+            <p>Apellido: {{simulated_alumn.last_name}}</p>
+            <p>Edad: {{simulated_alumn.age}}</p>
+
+            {% if not simulated_alumn.valid %}
+                <p style="color: red;"><b>Alerta!</b> Este usuario no está validado aún. Por favor contactarse con soporte.</p>
+            {% endif %}
+        </section>
+
+        <section>
+            <h2>Listado de alumnos</h2>
+
+            {% for alumn in alumn_list %}
+                <article>
+                    {% filter upper %}
+                        <p>Nombre: {{alumn.first_name}}</p>
+                    {% endfilter %}
+                    <p>Apellido: {{alumn.last_name}}</p>
+                </article>
+            {% empty %}
+                <p>No hay Alumnos cargados</p>
+            {% endfor %}
+        </section>
+    </main>
+    <footer>
+        <p>Codo a codo 2023. Todos los derechos reservados.</p>
+    </footer>
+</body>
+</html>

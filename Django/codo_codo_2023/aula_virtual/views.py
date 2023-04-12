@@ -2,11 +2,47 @@ from django.shortcuts import render
 from django.http import HttpResponse, HttpResponseNotFound
 from django.urls import reverse
 
-def landing_page(request):
+def index(request):
     print(reverse('alta_alumno'))
     print(request.method)
 
-    return HttpResponse("<h1>Bienvenid@</h1> al Aula Virtual 2.0", status=208)
+    # Vamos a suponer que esta info la obtuve de la BBDD.
+    alumno_ficticio = {
+        'first_name': 'Pedro',
+        'last_name': 'Del Cerro',
+        'age': 35,
+        'valid': False
+    }
+
+    # Este listado de alumnos tambien vamos a suponer que viene de la BBDD
+    alumn_list = [
+        {
+            'first_name': 'Gonzalo',
+            'last_name': 'Gutierrez',
+            'age': 35,
+            'valid': False
+        },
+        {
+            'first_name': 'Maria',
+            'last_name': 'Mocoretá',
+            'age': 40,
+            'valid': True
+        },
+        {
+            'first_name': 'Gabriel',
+            'last_name': 'Gonzalez',
+            'age': 32,
+            'valid': True
+        },
+    ]
+    context = {
+        'user_name': 'Carlos',
+        'user_lastname': 'Lopez',
+        'simulated_alumn': alumno_ficticio,
+        'alumn_list': alumn_list
+    }
+
+    return render(request, 'aula_virtual/index.html', context)
 
 def saludar_usuario(request, nombre_usuario):
     return HttpResponse(f"Hola <b>{nombre_usuario}</b>, Bienvenid@ al Aula Virtual 2.0")
