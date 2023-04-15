@@ -1,0 +1,30 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block titulo %} {% endblock %}</title>
+    <link rel="stylesheet" href="{% static 'aula_virtual/css/base.css' %}">
+</head>
+<body>
+    <header>
+        {% block encabezado %} {% endblock %}
+    </header>
+    <nav>
+        <ul>
+            <li><a href="{% url 'index' %}">Home</a></li>
+            <li><a href="{% url 'alta_alumno' %}">Alta Alumno</a></li>
+            <li><a href="{% url 'baja_alumno' %}">Baja Alumno</a></li>
+        </ul>
+    </nav>
+    <main>
+        {% block contenido %} {% endblock %}
+    </main>
+    <footer>
+        {% include 'aula_virtual/anuncios/google.html' %}
+        <p>Codo a codo 2023. Todos los derechos reservados.</p>
+    </footer>
+</body>
+</html>
