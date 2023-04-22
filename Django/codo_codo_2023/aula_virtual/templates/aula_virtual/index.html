@@ -1,6 +1,10 @@
 {% extends 'aula_virtual/base.html' %}
 {% load static %}
 
+{% block extra_css %}
+    <link rel="stylesheet" href="{% static 'aula_virtual/css/index.css' %}">
+{% endblock %}
+
 {% block titulo %}Aula Virtual 2.0{% endblock %}
 
 {% block encabezado %}
