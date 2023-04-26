@@ -12,4 +12,6 @@ urlpatterns = [
     re_path(r'^alumnos/(?P<year>[0-9]{4})/(?P<month>[0-9]{2})/$', views.listar_alumnos_by_year_month, name="listar_alumnos_by_year_month"),
 
     path('docentes/<int:year>/', views.docentes_by_year, {'curso': 'Django'}, name="docentes_by_year"),
+
+    path('enviar_consulta/', views.enviar_consulta, name="enviar_consulta"),
 ]

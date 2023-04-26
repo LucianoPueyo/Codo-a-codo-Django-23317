@@ -1,8 +1,9 @@
-from django.shortcuts import render
+from django.contrib import messages
+from django.shortcuts import render, redirect
 from django.http import HttpResponse, HttpResponseNotFound
 from django.urls import reverse
 
-from .forms import AltaAlumnoForm
+from .forms import AltaAlumnoForm, EnviarConsultaForm
 
 def index(request):
     print(reverse('alta_alumno'))
@@ -53,6 +54,25 @@ def alta_alumno(request):
     if request.method == "POST":
         # POST
         alta_alumno_form = AltaAlumnoForm(request.POST)
+
+        # Validaciones
+        if alta_alumno_form.is_valid():
+            print(
+                alta_alumno_form.cleaned_data['apellido'],
+                alta_alumno_form.cleaned_data['nombre'],
+                alta_alumno_form.cleaned_data['mail']
+            )
+
+            messages.add_message(
+                request, messages.SUCCESS,
+                'Alumno dado de alta Correctamente',
+                extra_tags="clase_1 clase_2"
+            )
+            
+            return redirect("index")
+
+        else:
+            messages.add_message(request, messages.ERROR, 'Ocurrió un error')
 
     else:
         # GET
@@ -105,3 +125,10 @@ def docentes_by_year(request, year, curso):
         "<p>Docente 1</p>" + 
         "<p>Docente 2</p>"
     )
+
+def enviar_consulta(request):
+
+    form = EnviarConsultaForm()
+    context = {'form': form}
+
+    return render(request, 'aula_virtual/enviar_consulta.html', context)

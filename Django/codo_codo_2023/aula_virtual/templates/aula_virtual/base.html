@@ -11,6 +11,15 @@
 </head>
 <body>
     <header>
+        <section class="mensajes">
+            {% if messages %}
+                <ul class="messages">
+                    {% for message in messages %}
+                        <li {% if message.tags %} class="{{ message.tags}}" {% endif %}>{{ message }}</li>
+                    {% endfor %}
+                </ul>
+            {% endif %}
+        </section>
         {% block encabezado %} {% endblock %}
     </header>
     <nav>
@@ -18,6 +27,7 @@
             <li><a href="{% url 'index' %}">Home</a></li>
             <li><a href="{% url 'alta_alumno' %}">Alta Alumno</a></li>
             <li><a href="{% url 'baja_alumno' %}">Baja Alumno</a></li>
+            <li><a href="{% url 'enviar_consulta' %}">Enviar consulta</a></li>
         </ul>
     </nav>
     <main>

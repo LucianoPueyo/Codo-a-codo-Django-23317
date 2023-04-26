@@ -1,0 +1,22 @@
+{% extends 'aula_virtual/base.html' %}
+{% load static %}
+
+{% block extra_css %}
+    <link rel="stylesheet" href="{% static 'aula_virtual/css/enviar_consulta.css' %}">
+{% endblock %}
+
+{% block titulo %}Envianos tu consulta{% endblock %}
+
+{% block encabezado %}
+    <h1>Envianos tu consulta</h1>
+    <p>Nos pondremos en contacto a la brevedad</p>
+{% endblock %}
+
+{% block contenido %}
+    <form action="" method="POST">
+        {% csrf_token %}
+        
+        {{ form.as_p }}
+        <input type="submit">
+    </form>
+{% endblock %}
