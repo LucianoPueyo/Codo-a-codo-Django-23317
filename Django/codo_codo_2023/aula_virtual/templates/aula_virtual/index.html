@@ -30,9 +30,9 @@
         {% for alumn in alumn_list %}
             <article>
                 {% filter upper %}
-                    <p>Nombre: {{alumn.first_name}}</p>
+                    <p>Nombre: {{alumn.nombre}}</p>
                 {% endfilter %}
-                <p>Apellido: {{alumn.last_name}}</p>
+                <p>Apellido: {{alumn.apellido}}</p>
             </article>
         {% empty %}
             <p>No hay Alumnos cargados</p>

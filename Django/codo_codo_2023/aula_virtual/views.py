@@ -4,6 +4,7 @@ from django.http import HttpResponse, HttpResponseNotFound
 from django.urls import reverse
 
 from .forms import AltaAlumnoForm, EnviarConsultaForm
+from .models import Alumno
 
 def index(request):
     print(reverse('alta_alumno'))
@@ -17,32 +18,14 @@ def index(request):
         'valid': False
     }
 
-    # Este listado de alumnos tambien vamos a suponer que viene de la BBDD
-    alumn_list = [
-        {
-            'first_name': 'Gonzalo',
-            'last_name': 'Gutierrez',
-            'age': 35,
-            'valid': False
-        },
-        {
-            'first_name': 'Maria',
-            'last_name': 'Mocoretá',
-            'age': 40,
-            'valid': True
-        },
-        {
-            'first_name': 'Gabriel',
-            'last_name': 'Gonzalez',
-            'age': 32,
-            'valid': True
-        },
-    ]
+    lista_alumnos = Alumno.objects.all()
+    print(lista_alumnos.query)
+
     context = {
         'user_name': 'Carlos',
         'user_lastname': 'Lopez',
         'simulated_alumn': alumno_ficticio,
-        'alumn_list': alumn_list
+        'alumn_list': lista_alumnos
     }
 
     return render(request, 'aula_virtual/index.html', context)
