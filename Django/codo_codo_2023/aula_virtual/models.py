@@ -1,10 +1,22 @@
 from django.db import models
 
-class Alumno(models.Model):
+
+class Persona(models.Model):
     nombre = models.CharField(max_length=128, verbose_name="Nombre")
     apellido = models.CharField(max_length=128, verbose_name="Apellido")
     mail = models.EmailField(max_length=128, verbose_name="Email")
     dni = models.IntegerField(verbose_name="Dni", null=True)
+
+    class Meta:
+        abstract = True
+
+
+class Instructor(Persona):
+    cuit = models.CharField(max_length=100, verbose_name="Cuit", null=True)
+
+
+class Alumno(Persona):
+    legajo = models.CharField(max_length=100, verbose_name="Legajo", null=True)
 
 
 class DetalleAlumno(models.Model):
@@ -14,13 +26,6 @@ class DetalleAlumno(models.Model):
     mail_alternativo = models.EmailField(max_length=128, verbose_name="Email alternativo")
     titulo = models.BooleanField(verbose_name="Titulo secundario entregado")
     alumno = models.OneToOneField(Alumno, on_delete=models.CASCADE, primary_key=True) # Uno a uno
-
-
-class Instructor(models.Model):
-    nombre = models.CharField(max_length=128, verbose_name="Nombre")
-    apellido = models.CharField(max_length=128, verbose_name="Apellido")
-    mail = models.EmailField(max_length=128, verbose_name="Email")
-    dni = models.IntegerField(verbose_name="Dni", null=True)
 
 
 class Curso(models.Model):

@@ -1,5 +1,7 @@
+from typing import Any, Dict
 from django import forms
 from django.core.exceptions import ValidationError
+from .models import Alumno
 
 TYPE_CHOICES = [
     ("general", "General"),
@@ -21,15 +23,14 @@ class AltaAlumnoForm(forms.Form):
     )
     apellido = forms.CharField(label="Apellido", required=True)
     mail = forms.EmailField(label="Email ", required=True)
+    dni = forms.IntegerField(label="Dni", required=True)
 
-    def clean_nombre(self):
-        pass
-        # Validación del campo Nombre
+    def clean(self):
+        mail = self.cleaned_data["mail"]
+        if Alumno.objects.filter(mail=mail).exists():
+            raise ValidationError("Ya hay un alumno inscripto con ese mail")
 
-        # Para mas detalle
-        # https://docs.djangoproject.com/en/4.2/ref/forms/validation/
-
-        # raise ValidationError("Validacion de nombre invalida")
+        return self.cleaned_data
 
 
 class EnviarConsultaForm(forms.Form):

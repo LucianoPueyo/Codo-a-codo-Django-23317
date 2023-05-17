@@ -40,19 +40,29 @@ def alta_alumno(request):
 
         # Validaciones
         if alta_alumno_form.is_valid():
-            print(
-                alta_alumno_form.cleaned_data['apellido'],
-                alta_alumno_form.cleaned_data['nombre'],
-                alta_alumno_form.cleaned_data['mail']
+
+            nombre = alta_alumno_form.cleaned_data["nombre"]
+            apellido = alta_alumno_form.cleaned_data["apellido"]
+            dni = alta_alumno_form.cleaned_data["dni"]
+            mail = alta_alumno_form.cleaned_data["mail"]
+
+            alumno_nuevo = Alumno(
+                nombre = nombre,
+                apellido = apellido,
+                mail = mail,
+                dni = dni,
+                legajo = str(dni) + nombre + apellido
             )
+
+            alumno_nuevo.save()
 
             messages.add_message(
                 request, messages.SUCCESS,
                 'Alumno dado de alta Correctamente',
-                extra_tags="clase_1 clase_2"
+                extra_tags="clase_1 clase_2 alert"
             )
             
-            return redirect("index")
+            return redirect("listar_alumnos")
 
         else:
             messages.add_message(request, messages.ERROR, 'Ocurrió un error')
@@ -67,6 +77,17 @@ def alta_alumno(request):
 
 def baja_alumno(request):
     return HttpResponse("<h2>Baja de alumnos activos</h2>")
+
+
+def listar_alumnos(request):
+    context = {}
+
+    listado_alumnos = Alumno.objects.all().order_by("-dni")
+
+    context["listado_alumnos"] = listado_alumnos
+
+    return render(request, 'aula_virtual/listar_alumnos.html', context)
+
 
 def listar_alumnos_2023(request):
     return HttpResponse(
