@@ -1,0 +1,32 @@
+{% extends 'aula_virtual/base.html' %}
+{% load static %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'aula_virtual/css/listar_instructores.css' %}">
+{% endblock %}
+
+{% block titulo %}Listado de Instructores{% endblock %}
+
+{% block encabezado %}
+<h1>Aula Virtual 2.0</h1>
+<h2>Listado de instructores activos</h2>
+{% endblock %}
+
+{% block contenido %}
+
+<section class="listado">
+    {% for instructor in object_list %}
+        <article>
+            <p><b>Nombre</b>: {{instructor.nombre}}</p>
+            <p><b>Apellido</b>: {{instructor.apellido}}</p>
+            <p><b>Mail</b>: {{instructor.mail}}</p>
+            <p><b>Dni</b>: {{instructor.dni}}</p>
+            <p><b>CUIT</b>: {% if instructor.cuit %} {{instructor.cuit}} {% else %} <span class="vacio">Sin CUIT</span>
+                {% endif %}</p>
+        </article>
+    {% empty %}
+        <article>No hay Instructores cargados</article>
+    {% endfor %}
+</section>
+
+{% endblock %}

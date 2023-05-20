@@ -2,9 +2,10 @@ from django.contrib import messages
 from django.shortcuts import render, redirect
 from django.http import HttpResponse, HttpResponseNotFound
 from django.urls import reverse
+from django.views.generic.list import ListView
 
-from .forms import AltaAlumnoForm, EnviarConsultaForm
-from .models import Alumno
+from .forms import AltaAlumnoForm, EnviarConsultaForm, AltaInstructorForm
+from .models import Alumno, Instructor
 
 def index(request):
     print(reverse('alta_alumno'))
@@ -75,18 +76,42 @@ def alta_alumno(request):
 
     return render(request, 'aula_virtual/alta_alumno.html', context)
 
+def alta_instructor(request):
+    context = {}
+
+    if request.method == "POST":
+        form = AltaInstructorForm(request.POST)
+
+        if form.is_valid():
+            # Guarde la instancia nueva
+            form.save()
+
+            # redirija
+            messages.add_message(request, messages.SUCCESS, 'Instructor dado de alta con éxito')
+            return redirect("listar_instructores")
+
+    else:
+        form = AltaInstructorForm()
+
+    context['form'] = form
+
+    return render(request, 'aula_virtual/alta_instructor.html', context)
+
 def baja_alumno(request):
     return HttpResponse("<h2>Baja de alumnos activos</h2>")
 
 
 def listar_alumnos(request):
     context = {}
-
     listado_alumnos = Alumno.objects.all().order_by("-dni")
-
     context["listado_alumnos"] = listado_alumnos
-
     return render(request, 'aula_virtual/listar_alumnos.html', context)
+
+class ListarInstructores(ListView):
+    model = Instructor
+    context_object_name = 'Instructores'
+    template_name = 'aula_virtual/listar_instructores.html'
+    ordering = ['dni']
 
 
 def listar_alumnos_2023(request):

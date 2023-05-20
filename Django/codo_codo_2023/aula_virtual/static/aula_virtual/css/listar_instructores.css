@@ -1,0 +1,18 @@
+.listado {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+article {
+    background-color: antiquewhite;
+    padding: 15px;
+    margin: 10px;
+    border-radius: 10px;
+
+    flex: 1;
+}
+
+article span.vacio {
+    color: red;
+}

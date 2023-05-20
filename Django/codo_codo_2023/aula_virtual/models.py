@@ -18,7 +18,6 @@ class Instructor(Persona):
 class Alumno(Persona):
     legajo = models.CharField(max_length=100, verbose_name="Legajo", null=True)
 
-
 class DetalleAlumno(models.Model):
     fecha_nacimiento = models.DateField(verbose_name="Fecha de nacimiento", default='1900-01-01')
     fecha_ingreso = models.DateField(verbose_name="Fecha de ingreso al sistema", default='1900-01-01')

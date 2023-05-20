@@ -1,7 +1,7 @@
 from typing import Any, Dict
 from django import forms
 from django.core.exceptions import ValidationError
-from .models import Alumno
+from .models import Alumno, Instructor
 
 TYPE_CHOICES = [
     ("general", "General"),
@@ -31,6 +31,11 @@ class AltaAlumnoForm(forms.Form):
             raise ValidationError("Ya hay un alumno inscripto con ese mail")
 
         return self.cleaned_data
+
+class AltaInstructorForm(forms.ModelForm):
+    class Meta:
+        model = Instructor
+        fields = '__all__'
 
 
 class EnviarConsultaForm(forms.Form):
