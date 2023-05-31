@@ -10,6 +10,9 @@ class Persona(models.Model):
     class Meta:
         abstract = True
 
+    def __str__(self):
+        return f"{self.nombre} {self.apellido} - DNI: {self.dni}"
+
 
 class Instructor(Persona):
     cuit = models.CharField(max_length=100, verbose_name="Cuit", null=True)
@@ -31,3 +34,6 @@ class Curso(models.Model):
     comision = models.IntegerField(verbose_name="Número de comisión")
     instructor = models.ForeignKey(Instructor, on_delete=models.CASCADE) # Muchos a uno
     alumnos = models.ManyToManyField(Alumno)
+
+    def __str__(self):
+        return f"comisión: {self.comision}"
