@@ -3,6 +3,7 @@ from django.shortcuts import render, redirect
 from django.http import HttpResponse, HttpResponseNotFound
 from django.urls import reverse
 from django.views.generic.list import ListView
+from django.contrib.auth.decorators import login_required, permission_required
 
 from .forms import AltaAlumnoForm, EnviarConsultaForm, AltaInstructorForm
 from .models import Alumno, Instructor
@@ -34,6 +35,7 @@ def index(request):
 def saludar_usuario(request, nombre_usuario):
     return HttpResponse(f"Hola <b>{nombre_usuario}</b>, Bienvenid@ al Aula Virtual 2.0")
 
+@login_required
 def alta_alumno(request):
     if request.method == "POST":
         # POST
@@ -76,6 +78,7 @@ def alta_alumno(request):
 
     return render(request, 'aula_virtual/alta_alumno.html', context)
 
+@permission_required('aula_virtual.add_instructor')
 def alta_instructor(request):
     context = {}
 

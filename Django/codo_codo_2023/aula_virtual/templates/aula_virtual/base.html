@@ -25,8 +25,12 @@
     <nav>
         <ul>
             <li><a href="{% url 'index' %}">Home</a></li>
-            <li><a href="{% url 'alta_alumno' %}">Alta Alumno</a></li>
-            <li><a href="{% url 'alta_instructor' %}">Alta Instructor</a></li>
+            {% if perms.aula_virtual.add_alumno %}
+                <li><a href="{% url 'alta_alumno' %}">Alta Alumno</a></li>
+            {% endif %}
+            {% if perms.aula_virtual.add_instructor %}
+                <li><a href="{% url 'alta_instructor' %}">Alta Instructor</a></li>
+            {% endif %}
             <li><a href="{% url 'baja_alumno' %}">Baja Alumno</a></li>
             <li><a href="{% url 'listar_alumnos' %}">Listado Alumnos</a></li>
             <li><a href="{% url 'listar_instructores' %}">Listado Instructores</a></li>
