@@ -1,0 +1,7 @@
+Puntos de la entrega 3 + 
+● Debe poder accederse al admin de Django y al menos los modelos que poseen la relación
+muchos a muchos deben poder administrarse del mismo.
+● El proyecto debe poseer al menos una página a la que solo se pueda acceder mediante
+autenticación y la misma debe ser validada tanto en el front-end como el back-end.
+
+La entrega debe ser realizada por la persona encargada de representar al equipo, y solo por esa persona (una por equipo). Se debe cargar el link al respositorio GIT del proyecto en los comentarios (texto en línea)
