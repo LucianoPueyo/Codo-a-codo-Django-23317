@@ -4,6 +4,9 @@ from django.http import HttpResponse, HttpResponseNotFound
 from django.urls import reverse
 from django.views.generic.list import ListView
 from django.contrib.auth.decorators import login_required, permission_required
+from rest_framework import viewsets, permissions
+from .serializers import AlumnoSerializer
+
 
 from .forms import AltaAlumnoForm, EnviarConsultaForm, AltaInstructorForm
 from .models import Alumno, Instructor
@@ -164,3 +167,9 @@ def enviar_consulta(request):
     context = {'form': form}
 
     return render(request, 'aula_virtual/enviar_consulta.html', context)
+
+class AlumnoViewSet(viewsets.ModelViewSet):
+    queryset = Alumno.objects.all()
+    serializer_class = AlumnoSerializer
+    permission_classes = [permissions.IsAuthenticatedOrReadOnly]
+

@@ -15,9 +15,16 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import include, path
+from rest_framework.routers import DefaultRouter
+from aula_virtual import views
+
+router = DefaultRouter()
+router.register(r'alumnos_api', views.AlumnoViewSet, basename='alumno')
 
 urlpatterns = [
+    path('', include(router.urls)),
     path('admin/', admin.site.urls),
     path('accounts/', include('django.contrib.auth.urls')),
-    path('aula_virtual/', include('aula_virtual.urls'))
+    path('aula_virtual/', include('aula_virtual.urls')),
+    path('api-auth', include('rest_framework.urls')),
 ]
