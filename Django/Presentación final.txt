@@ -1,0 +1,18 @@
+Presentación final:
+
+1. Todos los integrantes del grupo deben estar conectados al momento de presentar.
+2. Todos los integrantes deben presentar una parte del trabajo.
+
+3. Grupo N°x
+	integrante 1
+	integrante 2
+	...
+	
+	link al repo de git
+
+4. 15 minutos por grupo Máximo
+
+5. que presentar?
+	. Un pantallazo general del frontend
+	. un pantallazo general del backend
+	. acceso al admin
